@@ -1,0 +1,32 @@
+name: Radar Tech Diário
+
+on:
+  schedule:
+    # 08:00 BRT é 11:00 UTC (Horário do GitHub)
+    - cron: '0 11 * * *' 
+  workflow_dispatch: # roda manualmente quando quiser
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Rodar o script
+        env:
+          # GitHub Actions não tem acesso ao .env, então passamos as variáveis de ambiente diretamente dos secrets
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+        run: npx ts-node src/index.ts
