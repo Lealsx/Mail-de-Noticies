@@ -3,7 +3,7 @@ name: Radar Tech Diário
 on:
   schedule:
     # 08:00 BRT é 11:00 UTC (Horário do GitHub)
-    - cron: '0 11 * * *' 
+    - cron: '13 11 * * *' 
   workflow_dispatch: # roda manualmente quando quiser
 
 jobs:
