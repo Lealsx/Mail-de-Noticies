@@ -21,8 +21,8 @@ async function fetchNews() {
 }
 
 // 2. IA gera o resumo do e-mail
-async function summarizeWithAI(articles: any[]) {
-    const model = gemini.getGenerativeModel({ model: "gemini-pro" });
+async function summarizeWithAI(articles: any[]) 
+{const model = gemini.getGenerativeModel({ model: "gemini-1.5-flash" });
     
 let prompt = "Você é o meu assistente pessoal de tecnologia. Faça um resumo rápido e direto das seguintes notícias de TI para mim. Destaque os pontos mais técnicos e relevantes, use tópicos para facilitar a leitura matinal e no final de cada noticia quero o link:\n\n";
     articles.forEach(a => {
